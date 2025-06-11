@@ -62,8 +62,8 @@ fun CardItem(
     modifier: Modifier = Modifier
 ) {
     val image = painterResource(
-        if (card.cardType == "VISA") R.drawable.visa_icon
-        else R.drawable.mastercard_icon
+        if (card.cardType == "VISA") R.drawable.ic_visa
+        else R.drawable.ic_mastercard
     )
 
     Card(
