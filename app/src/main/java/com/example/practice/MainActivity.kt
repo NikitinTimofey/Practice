@@ -9,9 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
-import com.example.practice.coreui.CardItem
-import com.example.practice.data.BankCard
-import com.example.practice.data.CardType
+import com.example.practice.coreui.BankCardsList
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,14 +18,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             MaterialTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    CardItem(
-                        modifier = Modifier.padding(innerPadding),
-                        card = BankCard(
-                            cardType = CardType.VISA,
-                            cardName = "Business",
-                            balance = 46.467,
-                            cardNum = "3664 7865 3786 3976"
-                        )
+                    BankCardsList(
+                        modifier = Modifier.padding(innerPadding)
                     )
                 }
             }
