@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.practice.core_ui.AddCardItem
 import com.example.practice.data.BankCard
 import com.example.practice.data.CardType
 
@@ -18,6 +19,7 @@ import com.example.practice.data.CardType
 fun BankCardsList(
     modifier: Modifier = Modifier
 ) {
+    val context = androidx.compose.ui.platform.LocalContext.current
     val cards = List(10) {
         BankCard(
             cardType = CardType.VISA,
@@ -32,6 +34,9 @@ fun BankCardsList(
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
+        item {
+            AddCardItem(context = context)
+        }
         items(cards) { card ->
             CardItem(
                 card = card,
