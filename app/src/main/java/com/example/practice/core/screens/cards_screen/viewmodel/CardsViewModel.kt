@@ -1,9 +1,13 @@
-package com.example.practice.core_ui
+package com.example.practice.core.screens.cards_screen.viewmodel
 
 import android.app.Application
 import android.widget.Toast
-import com.example.practice.data.BankCard
-import com.example.practice.data.CardType
+import com.example.practice.core.common.AbstractViewModel
+import com.example.practice.core.common.Action
+import com.example.practice.core.data.BankCard
+import com.example.practice.core.data.CardType
+import com.example.practice.core.screens.cards_screen.action.CardsAction
+import com.example.practice.core.screens.cards_screen.state.CardsState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,6 +21,10 @@ class CardsViewModel @Inject constructor(
     private val _state = MutableStateFlow<CardsState>(CardsState.Empty)
     override val state: StateFlow<CardsState> = _state
 
+    init {
+        loadCards()
+    }
+
     override fun doAction(action: Action) {
         when (action) {
             is CardsAction.AddCardClicked -> showAddCardToast()
@@ -28,11 +36,6 @@ class CardsViewModel @Inject constructor(
     private fun showAddCardToast() {
         Toast.makeText(application, "Добавление карты", Toast.LENGTH_SHORT).show()
     }
-
-    init {
-        loadCards()
-    }
-
     private fun loadCards() {
         val cards = List(10) {
             BankCard(

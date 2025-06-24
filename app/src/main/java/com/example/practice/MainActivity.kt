@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
-import com.example.practice.core_ui.CardsScreen
+import com.example.practice.core.screens.cards_screen.screen.CardsScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -1,4 +1,4 @@
-package com.example.practice.coreui
+package com.example.practice.core.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -9,11 +9,10 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.practice.core_ui.AddCardItem
-import com.example.practice.core_ui.CardsAction
-import com.example.practice.core_ui.CardsViewModel
-import com.example.practice.data.BankCard
-import com.example.practice.data.CardType
+import com.example.practice.core.screens.cards_screen.action.CardsAction
+import com.example.practice.core.screens.cards_screen.viewmodel.CardsViewModel
+import com.example.practice.core.data.BankCard
+import com.example.practice.core.data.CardType
 
 @Composable
 fun BankCardsList(

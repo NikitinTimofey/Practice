@@ -1,4 +1,4 @@
-package com.example.practice.core_ui
+package com.example.practice.core.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border

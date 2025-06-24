@@ -1,7 +1,8 @@
-package com.example.practice.core_ui
+package com.example.practice.core.screens.cards_screen.state
 
 import androidx.compose.runtime.Immutable
-import com.example.practice.data.BankCard
+import com.example.practice.core.common.State
+import com.example.practice.core.data.BankCard
 
 sealed interface CardsState : State {
 

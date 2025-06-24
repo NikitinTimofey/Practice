@@ -1,4 +1,4 @@
-package com.example.practice.core_ui
+package com.example.practice.core.screens.cards_screen.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -11,7 +11,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.practice.coreui.CardItem
+import com.example.practice.core.ui.AddCardItem
+import com.example.practice.core.screens.cards_screen.action.CardsAction
+import com.example.practice.core.screens.cards_screen.state.CardsState
+import com.example.practice.core.screens.cards_screen.viewmodel.CardsViewModel
+import com.example.practice.core.ui.CardItem
 
 @Composable
 fun CardsScreen(

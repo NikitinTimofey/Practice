@@ -1,4 +1,4 @@
-package com.example.practice.core_ui
+package com.example.practice.core.common
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.StateFlow
