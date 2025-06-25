@@ -10,6 +10,7 @@ sealed interface CardsState : State {
 
     @Immutable
     data class Data(
-        val cards: List<BankCard>
+        val cards: List<BankCard>,
+        val toastMessage: String? = null
     ) : CardsState
 }

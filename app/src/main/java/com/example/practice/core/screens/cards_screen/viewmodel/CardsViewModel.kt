@@ -1,7 +1,5 @@
 package com.example.practice.core.screens.cards_screen.viewmodel
 
-import android.app.Application
-import android.widget.Toast
 import com.example.practice.core.common.AbstractViewModel
 import com.example.practice.core.common.Action
 import com.example.practice.core.data.BankCard
@@ -11,12 +9,11 @@ import com.example.practice.core.screens.cards_screen.state.CardsState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 @HiltViewModel
-class CardsViewModel @Inject constructor(
-    private val application: Application
-) : AbstractViewModel() {
+class CardsViewModel @Inject constructor() : AbstractViewModel() {
 
     private val _state = MutableStateFlow<CardsState>(CardsState.Empty)
     override val state: StateFlow<CardsState> = _state
@@ -27,15 +24,31 @@ class CardsViewModel @Inject constructor(
 
     override fun doAction(action: Action) {
         when (action) {
-            is CardsAction.AddCardClicked -> showAddCardToast()
+            is CardsAction.AddCardClicked -> addCard()
+            is CardsAction.ToastShown -> clearToast()
         }
     }
 
     private fun AddCardClicked() {}
 
-    private fun showAddCardToast() {
-        Toast.makeText(application, "Добавление карты", Toast.LENGTH_SHORT).show()
+    fun addCard() {
+        _state.update { currentState ->
+            when (currentState) {
+                is CardsState.Data -> currentState.copy(toastMessage = "Карта добавлена!")
+                is CardsState.Empty -> currentState
+            }
+        }
     }
+
+    fun clearToast() {
+        _state.update { currentState ->
+            when (currentState) {
+                is CardsState.Data -> currentState.copy(toastMessage = null)
+                is CardsState.Empty -> currentState
+            }
+        }
+    }
+
     private fun loadCards() {
         val cards = List(10) {
             BankCard(
