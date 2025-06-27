@@ -40,7 +40,7 @@ fun CardsScreen(
         }
     }
 
-    when (val currentState = state) {
+    when (state) {
         is CardsState.Empty -> Unit
         is CardsState.Data -> {
             LazyColumn(
@@ -53,7 +53,7 @@ fun CardsScreen(
                         onClick = { viewModel.doAction(CardsAction.AddCardClicked) }
                     )
                 }
-                items(currentState.cards) { card ->
+                items((state as CardsState.Data).cards) { card ->
                     CardItem(card = card)
                 }
             }
