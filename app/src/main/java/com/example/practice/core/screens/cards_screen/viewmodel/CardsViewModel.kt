@@ -43,14 +43,11 @@ class CardsViewModel @Inject constructor(
                 cardNum = "9999 8888 7777 6666"
             )
             val updatedCards = repository.addNewCard(newCard)
-            _state.update { currentState ->
-                when (currentState) {
-                    is CardsState.Data -> currentState.copy(
-                        cards = updatedCards,
-                        toastMessage = "Карта добавлена!"
-                    )
-                    is CardsState.Empty -> currentState
-                }
+            _state.update {
+                CardsState.Data(
+                    cards = updatedCards,
+                    toastMessage = "Карта добавлена"
+                )
             }
         }
     }
@@ -65,15 +62,9 @@ class CardsViewModel @Inject constructor(
     }
 
     private fun loadCards() {
-        _state.value = CardsState.Data(
-            cards = List(10) { index ->
-                BankCard(
-                    cardType = CardType.VISA,
-                    cardName = "Business",
-                    balance = 46.46,
-                    cardNum = "1234 5678 9876 5432"
-                )
-            }
-        )
+        viewModelScope.launch {
+            val cards = repository.getCardsData()
+            _state.value = CardsState.Data(cards)
+        }
     }
 }
