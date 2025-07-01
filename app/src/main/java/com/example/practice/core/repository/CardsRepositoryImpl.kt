@@ -1,37 +1,25 @@
 package com.example.practice.core.repository
 
 import com.example.practice.core.data.BankCard
-import com.example.practice.core.data.BankCardEntity
 import com.example.practice.core.database.BankCardDao
+import com.example.practice.core.mapping.BankCardToEntityMapper
+import com.example.practice.core.mapping.EntityToBankCardMapper
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
 class CardsRepositoryImpl @Inject constructor(
-    private val bankCardDao: BankCardDao
+    private val bankCardDao: BankCardDao,
+    private val toEntityMapper: BankCardToEntityMapper,
+    private val toDomainMapper: EntityToBankCardMapper
 ) : CardsRepository {
 
     override suspend fun getCardsData(): List<BankCard> {
         return bankCardDao.getAllCards()
             .first()
-            .map { it.toBankCard() }
+            .map { toDomainMapper(it)}
     }
 
-    override suspend fun addNewCard(card: BankCard): List<BankCard> {
-        bankCardDao.insertCard(card.toBankCardEntity())
-        return getCardsData()
+    override suspend fun addNewCard(card: BankCard) {
+        bankCardDao.insertCard(toEntityMapper(card))
     }
-
-    private fun BankCard.toBankCardEntity() = BankCardEntity(
-        cardType = cardType,
-        cardName = cardName,
-        balance = balance,
-        cardNum = cardNum
-    )
-
-    private fun BankCardEntity.toBankCard() = BankCard(
-        cardType = cardType,
-        cardName = cardName,
-        balance = balance,
-        cardNum = cardNum
-    )
 }

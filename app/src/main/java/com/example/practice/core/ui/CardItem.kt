@@ -32,7 +32,7 @@ fun CardItem(
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .padding(24.dp)
+            .padding(horizontal = 24.dp, vertical = 8.dp)
             .height(200.dp),
         colors = CardDefaults.cardColors(containerColor = Color.Magenta),
         shape = RoundedCornerShape(35.dp),
