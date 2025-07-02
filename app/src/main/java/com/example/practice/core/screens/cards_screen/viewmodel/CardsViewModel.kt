@@ -42,13 +42,8 @@ class CardsViewModel @Inject constructor(
                 balance = 100.0,
                 cardNum = "9999 8888 7777 6666"
             )
-            val updatedCards = repository.addNewCard(newCard)
-            _state.update {
-                CardsState.Data(
-                    cards = updatedCards,
-                    toastMessage = "Карта добавлена"
-                )
-            }
+            repository.addNewCard(newCard)
+            loadCards()
         }
     }
 
